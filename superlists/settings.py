@@ -54,6 +54,9 @@ ROOT_URLCONF = 'superlists.urls'
 
 WSGI_APPLICATION = 'superlists.wsgi.application'
 
+# Authentication
+AUTH_USER_MODEL = 'accounts.User'
+AUTHENTICATION_BACKENDS = ('accounts.authentication.PersonaAuthenticationBackend',)
 
 # Database
 # https://docs.djangoproject.com/en/1.7/ref/settings/#databases
@@ -85,6 +88,7 @@ STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, '../static')
 STATICFILES_DIRS = (os.path.join(BASE_DIR, 'superlists', 'static'),)
 
+# Logging
 LOGGING = {
         'version': 1,
         'disable_existing_loggers': False,
