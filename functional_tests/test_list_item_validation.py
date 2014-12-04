@@ -48,7 +48,7 @@ class ItemValidationTest(FunctionalTest):
         error = self.get_error_element()
         self.assertEqual(error.text, "You've already got this in your list")
 
-    def test_error_messages_are_cleared_on_input(self):
+    def test_error_messages_are_cleared_on_input_keypressed(self):
         # Edith starts a new list in a way that causes a validation error:
         self.browser.get(self.server_url)
         self.get_item_input_box().send_keys('\n')
@@ -58,8 +58,23 @@ class ItemValidationTest(FunctionalTest):
         # She starts typing in the input box to clear the error
         self.get_item_input_box().send_keys('a')
 
-        # She is pleased to see that the error message disappers
+        # She is pleased to see that the error message disappears
         error = self.get_error_element()
         self.assertFalse(error.is_displayed())
+
+    def test_error_messages_are_cleared_on_input_clicked(self):
+        # Edith starts a new list in a way that causes a validation error
+        self.browser.get(self.server_url)
+        self.get_item_input_box().send_keys('\n')
+        error = self.get_error_element()
+        self.assertTrue(error.is_displayed())
+
+        # She clicks in the input box to clear the error
+        self.get_item_input_box().click()
+
+        # She is pleased to see that the error message disappears
+        error = self.get_error_element()
+        self.assertFalse(error.is_displayed())
+        
 
 

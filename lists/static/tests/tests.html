@@ -21,7 +21,14 @@
         <script>
             /*global $, test, equal */
             test("errors should be hidden on keypress", function() {
-                $('input').trigger('keypress');
+                lists_init();
+                $("input[name='text']").trigger('keypress');
+                equal($('.has-error').is(':visible'), false);
+            });
+
+            test("errors should be hidden on click", function() {
+                lists_init();
+                $("input[name='text']").trigger('click');
                 equal($('.has-error').is(':visible'), false);
             });
 
